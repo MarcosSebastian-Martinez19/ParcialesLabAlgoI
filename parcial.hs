@@ -1,3 +1,5 @@
+-- Tema a
+
 -- Piedra Papel Tijera
 -- a) Definir el tipo Forma que consta de los constructores sin parametricos Piedra, Papel y Tijera. El tipo forma no debe estar en la clase Eq. Luego programar la función.
 data Forma = Piedra | Papel | Tijera
@@ -59,3 +61,38 @@ contar_tiempos (Entonar _ figura melodia) = case figura of
 --ghci> let pink = Entonar Re Negra (Entonar Mi Corchea (Entonar Fa Negra (Entonar Mi Negra Vacia)))
 --ghci> contar_tiempos pink
 --7
+
+-- Tema b
+-- Ejercicio 1
+-- a
+
+data Palo = Espada | Basto | Oro | Copa
+
+mismo_palo :: Palo -> Palo -> Bool
+mismo_palo Espada Espada = True
+mismo_palo Basto Basto = True
+mismo_palo Oro Oro = True
+mismo_palo Copa Copa = True
+mismo_palo _ _ = False
+
+-- b
+data Figura' = Uno | Dos | Tres | Cuatro | Cinco | Seis | Siete | Sota | Caballo | Rey
+
+valor_figura :: Figura' -> Int
+valor_figura Uno = 1
+valor_figura Dos = 2
+valor_figura Tres = 3
+valor_figura Cuatro = 4
+valor_figura Cinco = 5
+valor_figura Seis = 6
+valor_figura Siete = 7
+valor_figura Sota = 8
+valor_figura Caballo = 9
+valor_figura Rey = 10
+
+data Carta = Naipe Figura' Palo
+
+suma_cartas :: Carta -> Carta -> Maybe Int
+suma_cartas (Naipe figura1 palo1) (Naipe figura2 palo2)
+    | mismo_palo palo1 palo2 = Just ((valor_figura figura1) + (valor_figura figura2))
+    | otherwise = Nothing
